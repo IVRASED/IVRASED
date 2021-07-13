@@ -191,17 +191,6 @@ Instruction sheet example can be found [here.](/rsc/instruction_sheet_example)
 
 
 
-
-
-
-## Processed files 
-File processing used here is describe in the paper and can be accessed here.
-It consists on 
-
-
-
-
-
 ## Citation
 To cite this work, please use:
 ``` 
