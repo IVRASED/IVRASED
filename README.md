@@ -12,7 +12,7 @@ The dataset can be downloaded from this link :  *\{updated after review process\
 ## Dataset description
 **IVRASED** dataset consists of two parts: 
 1.	**Physiological recording** (EEG, ECG, GSR, Eye-tracking) of 15participants done in an **industrial VRLE** during assembly task for around 1hour long, including the VR recorded video.
-2.	The perveived **self-efficacy** of the current task self-assessed before and after the assemblage on a discrete 10-point scale (range of 1 to 10)
+2.	The perceived **self-efficacy** of the current task self-assessed before and after the assemblage on a discrete 10-point scale (range of 1 to 10)
 
 ![assembly task schema](rsc/situation_sef.PNG "assembly task schema")
 
@@ -188,6 +188,17 @@ Each participant have subsequently done two sequence.
 Situation in bold are designed as more complex than other as they synthetise assembly step. [(example here)](/rsc/instruction_sheet_example/subsystem_synthesis.png) 
 
 Instruction sheet example can be found [here.](/rsc/instruction_sheet_example) 
+
+
+
+
+
+
+## Processed files 
+File processing used is described in the paper and can be accessed [here.](/Preprocessing) 
+
+
+
 
 
 
