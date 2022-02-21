@@ -27,7 +27,7 @@ pre_processed_data/
 │   └── ...
 ```
 
-![processing]( rsc\file_processing.png "processing")
+![processing]( /rsc\file_processing.png "processing")
 
 A colab notebook is available to read samples from the processed files. 
 https://colab.research.google.com/drive/1EAeAQLlCV4_zUB1Wvhfn4D_5h84bawCx?usp=sharing
@@ -39,8 +39,19 @@ https://colab.research.google.com/drive/1EAeAQLlCV4_zUB1Wvhfn4D_5h84bawCx?usp=sh
 - **Segment** each Self-Efficacy answer (SE from reading and from assembly task)
 - **Export** processed data in a pickle array of multi-indexed dataframe
     - Each dataframe representing the signals from a SE answer 
+```
+pre_processed_data/
+├── iMotionsToPython/ #list of dataframe with data sampled to 128Hz
+│   ├── BySequence/
+│   │   ├── (respondent_id)_(sequence_id)_full_features_data.array
+│   │   ├── (respondent_id)_(sequence_id)_annotation_data
+│   │   └── (respondent_id)_(sequence_id)_dict
+│   │   └── ...
+│   └── AllSquence/ #Aggregated file
+│   │   └── all_data_full_features_10_classes.array
+```
 
-**To run only one CSV file:**
+**To run only one CSV (sequence) file:**
 ```
 export_path = './iMotionsToPython/'
 filename="./raw_data/(respondent_id)_(sequence_id).csv"
@@ -48,24 +59,39 @@ sequence_list = []
 sequence_list = runOneFile(filename,export_path, False, False, False)
 ```
 
+From this function, we obtain by sequence :
+- *(respondent_id)_(sequence_id)_annotation_data* : an annotation file with all the SE answer (raw_data without signals)
+- *(respondent_id)_(sequence_id)_dict* :a dictionnary which contain for each assembly task: all the SE answer and the time to complete.
+- *(respondent_id)_(sequence_id)_full_features_data.array* : list of dataframe segmented by SE with all the data resampled to 128Hz.
+
 **To run all CSV files in a repository:**
 ```
 export_path = './iMotionsToPython/AllSequence/'
 path = './raw_data/'
 runAllFilesInRepository(path, export_path)
 ```
-From this function, we obtain an aggregated 
+This fucntion call the runOneFile function hence obtaining all the files aboves by sequence and an aggregated file of the *(respondent_id)_(sequence_id)_full_features_data.array* : 
+- *all_data_full_features_10_classes.array* 
 
 # run_experiment.py
- - Prepare data to deep architecture**
 
-**Step 1 - read data exported by pre_processing.py**
+**Prepare train and test files on all combinaison of sensor available.**
 
-`
-AllData = pd.read_pickle("/home/deep01/zaher/all_data_full_features_10_classes_final.array")
-`
+input : *_full_features_data.array*
 
-**Step 2 - add your parameters for the data to export**
+- Read  data exported by pre_processing.py
+
+```
+AllData = pd.read_pickle("pre_processed/iMotionsToPython/Allsequence/all_data_full_features_10_classes_final.array")
+```
+- **Create cross-validation fold**
+- Data slicing :
+  - With or w/o Data augmentation by **window overlapping**
+
+
+
+![window]( /rsc\window_slicing.png
+ "window")
 
 **Example of parameters to export data(train and test) without overlap - take only last 2 seconds of each SEF**
 
@@ -89,7 +115,8 @@ data_folder_name = ""
 folds_number = 5
 ```
 
-**Step 3 - Run the file to make all combination of groups with an n folds for each combination**
+**To run the file to make all combination of groups with an n folds for each combination**
 
-`crossValSplit(folds_number, AllData, groups, folder_name_prefix= "_data_with_augmentation_2C_byFeatures_all_new")`
+```
+crossValSplit(folds_number, AllData, groups, folder_name_prefix= "_data_with_augmentation_byFeatures")```
 
