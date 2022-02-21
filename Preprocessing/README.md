@@ -1,21 +1,63 @@
-**pre_processing.py - Read Imotion CSV files, and make all data on the same sample rate (128) - Export new data in an array (pickle)**
-
-**To run only one Imotion csv file:**
 ```
-export_path = '/home/deep01/zaher/new_export/exportedObjectFullFeatures/'
-filename="/home/deep01/imotions_data/003_3754b5_sequence2.csv"
+raw_data/
+├── csv/
+│   ├── (respondent_id)_(sequence_id).csv
+│   └── ...
+├── parquet/
+│   ├── (respondent_id)_(sequence_id).parquet
+│   └── ...
+
+pre_processed_data/
+├── iMotionsToPython/ #list of dataframe with data sampled to 128Hz
+│   ├── BySequence/
+│   │   ├── (respondent_id)_(sequence_id)_full_features_data.array
+│   │   ├── (respondent_id)_(sequence_id)_annotation_data
+│   │   └── (respondent_id)_(sequence_id)_dict
+│   │   └── ...
+│   └── AllSquence/ #Aggregated file
+│   │   └── all_data_full_features_10_classes.array
+├── processed_sensor_combination/(fold_number)/
+│   ├── Sensor n x Sensor m x Sensor k/
+│   │   ├── X_train.npy
+│   │   ├── Y_train.npy
+│   │   ├── X_test.npy
+│   │   └── Y_test.npy
+│   ├── Sensor n x Sensor m/
+│   │   └── ...
+│   └── ...
+```
+
+![processing]( rsc\file_processing.png "processing")
+
+A colab notebook is available to read samples from the processed files. 
+https://colab.research.google.com/drive/1EAeAQLlCV4_zUB1Wvhfn4D_5h84bawCx?usp=sharing
+
+# pre_processing.py 
+
+- Read raw CSV files
+- **Resample** signals to 128Hz
+- **Segment** each Self-Efficacy answer (SE from reading and from assembly task)
+- **Export** processed data in a pickle array of multi-indexed dataframe
+    - Each dataframe representing the signals from a SE answer 
+
+**To run only one CSV file:**
+```
+export_path = './iMotionsToPython/'
+filename="./raw_data/(respondent_id)_(sequence_id).csv"
 sequence_list = []
 sequence_list = runOneFile(filename,export_path, False, False, False)
 ```
 
-**To run all Imotion csv files in a repository:**
+**To run all CSV files in a repository:**
 ```
-export_path = '/home/deep01/zaher/new_export/exportedObjectFullFeatures/'
-path = '/home/deep01/imotions_data_juin'
+export_path = './iMotionsToPython/AllSequence/'
+path = './raw_data/'
 runAllFilesInRepository(path, export_path)
 ```
+From this function, we obtain an aggregated 
 
-**run_experiment.py - Prepare data to deep architecture**
+# run_experiment.py
+ - Prepare data to deep architecture**
 
 **Step 1 - read data exported by pre_processing.py**
 

@@ -35,21 +35,63 @@ iMotions platform has been used to organize the study and aggregate all the sens
 | GSR          | Shimmer GSR 3+     | 128Hz              |
 | Eye-tracking | Tobii Eye Tracking | 64Hz               |
 
+The B-Alert-X10t provides 3 types of datas. Raw and decontaminated signals sampled at 256Hz and brain metric through iMotions platform at 1Hz. ECG signal is delivered along 3 leads at 512Hz , supplied with heartrate and interbeat interval at 1Hz. GSR sensor provide a raw signal sampled at 128Hz, both extracted GSR conductance and resistance, and a realtime analysis of peak properties. iMotions include a real-time ET analysis alongside pupillometry, giving clue about fixations and saccades properties.
 
 ### File details 
+We provide both [raw](#dataset)  and 
+[preprocessed data.](#processed-files)
+
+
+```
+raw_data/
+├── csv/
+│   ├── (respondent_id)_(sequence_id).csv
+│   └── ...
+├── parquet/
+│   ├── (respondent_id)_(sequence_id).parquet
+│   └── ...
+
+pre_processed_data/
+├── iMotionsToPython/ #list of dataframe with data sampled to 128Hz
+│   ├── BySequence/
+│   │   ├── (respondent_id)_(sequence_id)_full_features_data.array
+│   │   ├── (respondent_id)_(sequence_id)_annotation_data
+│   │   └── (respondent_id)_(sequence_id)_dict
+│   │   └── ...
+│   └── AllSquence/ #Aggregated file
+│   │   └── all_data_full_features_10_classes.array
+├── processed_sensor_combination/(fold_number)/
+│   ├── Sensor n x Sensor m x Sensor k/
+│   │   ├── X_train.npy
+│   │   ├── Y_train.npy
+│   │   ├── X_test.npy
+│   │   └── Y_test.npy
+│   ├── Sensor n x Sensor m/
+│   │   └── ...
+│   └── ...
+```
+### Dataset
+
 Original raw data recordings are exported through iMotions platform and saved into CSV format.
+We also provide the data under parquet format which is faster in read and takes less storage space.
+
 There are 34 files. Each participant have consecutively done two sequence, therefore there is two files for each subject, except for the participants : 
 - ee2d3 who realised only Sequence1 due to cybersickness.
 - 2f672e and 317ed5 which have both sequence 1 and sequence 2 in two part and 3754b5 which have sequence 2 in two part, due to hardware disconnection.
 
 Sequence organisation is presented [below.](#sequence-organisation) 
 
-Filenames follow this specific pattern : "*(participant_id)_(sequence_number).csv*", e.g. : 02e52_sequence1.csv. Participant id list can be found [below.](#self-efficacy) 
+Filenames follow this specific pattern : 
+"*(respondent_id)_(sequence_number).csv*", e.g. : 02e52_sequence1.csv. Participant id list can be found [below.](#self-efficacy) 
 
-The B-Alert-X10t provides 3 types of datas. Raw and decontaminated signals sampled at 256Hz and brain metric through iMotions platform at 1Hz. ECG signal is delivered along 3 leads at 512Hz , supplied with heartrate and interbeat interval at 1Hz. GSR sensor provide a raw signal sampled at 128Hz, both extracted GSR conductance and resistance, and a realtime analysis of peak properties. iMotions include a real-time ET analysis alongside pupillometry, giving clue about fixations and saccades properties.
 
 
-Source signals give feature set which can be identified by the *"#Device"* row:
+Raw data files respect this specific pattern of 3 parts: 
+- #INFO:  general information about the recorded data
+- #METADATA: explanatory information for each of the data-columns
+- #DATA: sensor data
+
+Feature set (from different source signal) can be identified by the *"#Device"* row:
 - *"B-Alert EEG"* for EEG data (EEG)
 - *"B-Alert Decontaminated EEG"* for decontamined EEG data (EEG_dec)
 - *"B-Alert BrainState"* for brain metrics (EEG_brainstate)
