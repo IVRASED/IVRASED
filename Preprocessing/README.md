@@ -27,7 +27,7 @@ pre_processed_data/
 │   └── ...
 ```
 
-![processing]( /rsc\file_processing.png "processing")
+![processing]( /rsc/file_processing.png "processing")
 
 A colab notebook is available to read samples from the processed files. 
 https://colab.research.google.com/drive/1EAeAQLlCV4_zUB1Wvhfn4D_5h84bawCx?usp=sharing
@@ -90,7 +90,7 @@ AllData = pd.read_pickle("pre_processed/iMotionsToPython/Allsequence/all_data_fu
 
 
 
-![window]( /rsc\window_slicing.png
+![window]( /rsc/window_slicing.png
  "window")
 
 **Example of parameters to export data(train and test) without overlap - take only last 2 seconds of each SEF**

@@ -37,7 +37,7 @@ iMotions platform has been used to organize the study and aggregate all the sens
 
 The B-Alert-X10t provides 3 types of datas. Raw and decontaminated signals sampled at 256Hz and brain metric through iMotions platform at 1Hz. ECG signal is delivered along 3 leads at 512Hz , supplied with heartrate and interbeat interval at 1Hz. GSR sensor provide a raw signal sampled at 128Hz, both extracted GSR conductance and resistance, and a realtime analysis of peak properties. iMotions include a real-time ET analysis alongside pupillometry, giving clue about fixations and saccades properties.
 
-### File details 
+## File details 
 We provide both [raw](#dataset)  and 
 [preprocessed data.](#processed-files)
 
@@ -70,7 +70,7 @@ pre_processed_data/
 │   │   └── ...
 │   └── ...
 ```
-### Dataset
+# Dataset
 
 Original raw data recordings are exported through iMotions platform and saved into CSV format.
 We also provide the data under parquet format which is faster in read and takes less storage space.
@@ -102,8 +102,11 @@ Feature set (from different source signal) can be identified by the *"#Device"* 
 
 
 
-#### EEG
+
   
+
+<details>
+<summary><ul> <b> EEG</b> <i>(click to drop down) </i> </ul>  </summary>
 Decontaminated signals are obtain after the appliance of decontamination algorithms that remove 5 artifacts types (EMG, EOG, excursion, saturations, spikes).
 
 Brain metrics are provided by iMotions thanks to a 9-minutes benchmark session before the experiment.
@@ -121,11 +124,12 @@ Brain metrics are provided by iMotions thanks to a 9-minutes benchmark session b
 | EEG_brainstate       | EEG\_Metric\_Workload\_BDS                                                | Workload score (BDS Method)                                                                    |
 | EEG_brainstate       | EEG\_Metric\_Workload\_Average                                            | Workload score (Computed as the average of FBDS and BDS method)                                |
 
+</details>
 
 
 
-
-#### ECG
+<details>
+<summary> <ul> <b> ECG </b> </ul> </summary>
 
 | Feature set     | Feature name                    | Feature description                                                                                     |
 | --------- | ------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -135,8 +139,11 @@ Brain metrics are provided by iMotions thanks to a 9-minutes benchmark session b
 | ECG       | ECG Vx-RL CAL                   | Electrocardiography signal measured from the Wilson's Central Terminal (WCT) voltage to the Vx position |
 | ECG_HR | Heart Rate ECG LL-RA ALG        | Heart rate calculated in Shimmer SDK                                                                    |
 | ECG_HR | IBI ECG LL-RA ALG               | Inter-Beat-Interval, time interval between heart beats, calculated in Shimmer SDK                       |
+</details>
 
-#### GSR 
+<details>
+<summary><ul> <b> GSR</ul> </b> </summary>
+ 
 
 | Feature set  | Feature name                     | Feature description                                    |
 | --------- | -------------------------------- | ------------------------------------------------------ |
@@ -146,8 +153,10 @@ Brain metrics are provided by iMotions thanks to a 9-minutes benchmark session b
 | GSR       | Internal ADC A13 PPG (RAW\\|CAL) | PPG blood volume pulse raw or calibrated               |
 | GSR_HR | Heart Rate PPG ALG               | Calculated heart rate                                  |
 | GSR_HR | IBI PPG ALG                      | Inter-beat-interval. Time interval between heart beats |
+</details>
 
-#### Eye-tracking
+<details>
+<summary><ul> <b> Eye-tracking</ul> </b> </summary>
 
 | Feature set        | Feature subset              | Feature name                       | Feature description                                                                                                                                                                                         |
 | ------------ | --------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -184,6 +193,8 @@ Brain metrics are provided by iMotions thanks to a 9-minutes benchmark session b
 | GazeAnalysis | ET(Saccades)          | Saccade Peak Deceleration          | Peak deceleration of the saccade (the maximal decrease in speed of the eyes during this saccade)                                                                                                            |
 | GazeAnalysis | ET(Saccades)          | Saccade Direction                  | Direction of the saccade from its start point to end point, indicated as counterclockwise angles: 0 degrees mean a horizontal saccade from left to right, 90 degrees a vertical saccade from bottom to top. |
 
+</details>
+<br>
 
 
 ## Self-efficacy
@@ -194,6 +205,9 @@ The self-assessed self-efficacy of the current task rated before and after the a
 Self-efficacy is reported in the "External events API" columns:
 - **MarkerName**="**SOC_DISPLAY**" corresponds to the time when the question is displayed 
 - **MarkerName**="**SOC_ANSWER**" corresponds to the time when the participant answer. The value of his **perceived self-efficacy** is given in the "**MarkerDescription**" column. 
+
+<details>
+  <summary>Summary <i> (Click to expand)</i> </summary>
 
 | Participant id | Number of SOC answered | Mean SOC answered | Minutes recorded |
 | -------------- | ---------------------- | ----------------- | ------- |
@@ -214,8 +228,9 @@ Self-efficacy is reported in the "External events API" columns:
 | ee2d3          | 10                     | 2,5               | 34      |
 | **Total**      | **406**                | **7,5**           | **890** |
 
+</details>
 
-
+<br><br>
 
 ![SEF distribution](rsc/sef_distrib.png "SEF distribution")
 
