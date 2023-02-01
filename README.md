@@ -272,3 +272,4 @@ To cite this work, please use:
   pages={176-182},
   doi={10.1109/VRW55335.2022.00045}}
 ```
+Publication available here https://ieeexplore.ieee.org/document/9757584
