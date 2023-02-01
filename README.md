@@ -1,4 +1,4 @@
-# IVRASED - Industrial VR Activity Self-Efficacy Dataset 
+# IVRASED - A Dataset and Methodology for Self-Efficacy Feeling Prediction During Industry 4.0 VR Activity 
 
 ## Objectives
 We introduce a **multi-modal physiological dataset** named "Industrial VR Activity Self-Efficacy Dataset" (**IVRASED**) to study Self-efficacy of a learner during learning task in a virtual reality learning environment (**VRLE**), especially in an industrial use-case. (assembly task).
