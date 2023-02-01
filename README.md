@@ -262,5 +262,13 @@ File processing used is described in the paper and can be accessed [here.](/Prep
 ## Citation
 To cite this work, please use:
 ``` 
-{updated after review process}
+@INPROCEEDINGS{9757584,
+  author={Bounhar, Thibaud and Yamak, Zaher and Havard, Vincent and Baudry, David},
+  booktitle={2022 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)}, 
+  title={A Dataset and Methodology for Self-Efficacy Feeling Prediction During Industry 4.0 VR Activity}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={176-182},
+  doi={10.1109/VRW55335.2022.00045}}
 ```
