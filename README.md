@@ -7,7 +7,7 @@ This dataset should allow learner analysis and modeling, in order to persue the 
 
 ## Download
 
-The dataset can be downloaded from this link :  https://bit.ly/IVRASED  
+The dataset can be downloaded from this link :  https://zenodo.org/record/8136155   
 
 ## Dataset description
 **IVRASED** dataset consists of two parts: 
